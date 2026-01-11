@@ -4,461 +4,231 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Compasso Engenharia e Assessoria</title>
-  <meta name="description" content="Compasso Engenharia e Assessoria: obras, reformas e gerenciamento com responsabilidade técnica. Orçamento pelo WhatsApp." />
+  <meta name="description" content="Compasso Engenharia e Assessoria: obras, reformas, gerenciamento e acompanhamento técnico. Orçamento pelo WhatsApp." />
+
+  <!-- Fonte (opcional) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #061013;
+      --bg:#061013;
       --bg2:#08181c;
-      --card:#0b1f23;
-      --line: rgba(255,255,255,.10);
+      --panel:rgba(11,31,35,.58);
+      --line:rgba(255,255,255,.10);
       --text:#e9f2f1;
-      --muted: rgba(233,242,241,.72);
+      --muted:rgba(233,242,241,.72);
       --gold:#c7a24a;
       --gold2:#e0c06a;
-      --teal:#0c3a3b;
-      --radius: 20px;
-      --shadow: 0 20px 60px rgba(0,0,0,.4);
-      --shadow-lg: 0 30px 80px rgba(0,0,0,.5);
-      --max: 1200px;
+      --radius:18px;
+      --shadow:0 18px 50px rgba(0,0,0,.45);
+      --max:1100px;
     }
 
-    *{ box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html{
-      scroll-behavior: smooth;
-    }
-    
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
     body{
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg), var(--bg2));
-      line-height: 1.6;
-      min-height: 100vh;
-      position: relative;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: linear-gradient(180deg,var(--bg),var(--bg2));
+      min-height:100vh;
+      line-height:1.6;
     }
-    
     body::before{
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(ellipse 1000px 600px at 10% 20%, rgba(199,162,74,.08), transparent),
-        radial-gradient(ellipse 800px 500px at 90% 80%, rgba(12,58,59,.15), transparent);
-      pointer-events: none;
-      z-index: 0;
-    }
-    
-    a{ color: inherit; text-decoration: none; }
-
-    .wrap{ 
-      max-width: var(--max); 
-      margin: 0 auto; 
-      padding: 32px 24px;
-      position: relative;
-      z-index: 1;
+      content:"";
+      position:fixed; inset:0;
+      background:
+        radial-gradient(900px 560px at 12% 18%, rgba(199,162,74,.10), transparent 60%),
+        radial-gradient(900px 560px at 88% 82%, rgba(12,58,59,.18), transparent 60%);
+      pointer-events:none;
+      z-index:0;
     }
 
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px;position:relative;z-index:1}
+
+    /* Header */
     header{
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(20px) saturate(180%);
-      background: rgba(6,16,19,.85);
-      border-bottom: 1px solid rgba(199,162,74,.25);
-      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(14px);
+      background: rgba(6,16,19,.82);
+      border-bottom:1px solid rgba(199,162,74,.22);
     }
-    
     .nav{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
     }
-    
-    .brand{
-      transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .brand:hover{
-      transform: scale(1.03) translateY(-2px);
-      filter: drop-shadow(0 10px 20px rgba(199,162,74,.3));
-    }
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand img{height:64px;width:auto;display:block}
+    .brand .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .brand .title strong{letter-spacing:.5px;font-size:14px}
+    .brand .title span{font-size:12px;color:var(--muted)}
+    .nav-actions{display:flex;gap:10px;flex-wrap:wrap}
 
+    /* Buttons */
     .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 12px;
-      border: 2px solid transparent;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;
+      border-radius:14px;
+      font-weight:700;
+      font-size:14px;
+      border:1px solid rgba(199,162,74,.35);
+      background: linear-gradient(135deg, rgba(199,162,74,.18), rgba(12,58,59,.12));
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      transition: transform .15s ease, border-color .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px);border-color:rgba(199,162,74,.70)}
+    .btn.primary{
       background: linear-gradient(135deg, var(--gold), var(--gold2));
       color: var(--bg);
-      font-weight: 600;
-      font-size: 15px;
-      box-shadow: 0 8px 24px rgba(199,162,74,.35);
-      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
-      white-space: nowrap;
-      cursor: pointer;
+      border-color: transparent;
+      box-shadow: 0 12px 28px rgba(199,162,74,.35);
     }
-    
-    .btn:hover{ 
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(199,162,74,.5);
-      filter: brightness(1.1);
-    }
-    
-    .btn:active{
-      transform: translateY(-1px);
-    }
+    .btn.primary:hover{filter:brightness(1.05)}
 
-    .btn.ghost{
-      background: rgba(199,162,74,.12);
-      border: 2px solid rgba(199,162,74,.3);
-      color: var(--text);
-      box-shadow: 0 4px 16px rgba(0,0,0,.2);
-    }
-    
-    .btn.ghost:hover{ 
-      background: rgba(199,162,74,.2);
-      border-color: var(--gold);
-    }
-
-    .hero{
-      padding: 40px 0 20px;
-    }
-    
-    .hero-card{
-      background: rgba(11,31,35,.55);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(199,162,74,.2);
-      border-radius: var(--radius);
-      padding: 40px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero-card::before{
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(199,162,74,.08), transparent 70%);
-      pointer-events: none;
-    }
-
-    .chips{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-    
-    .chip{
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text);
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(199,162,74,.3);
-      background: rgba(199,162,74,.12);
-      transition: all .3s ease;
-      cursor: default;
-    }
-    
-    .chip:hover{
-      border-color: var(--gold);
-      background: rgba(199,162,74,.2);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(199,162,74,.2);
-    }
-
-    h1{
-      font-size: clamp(32px, 4vw, 52px);
-      line-height: 1.15;
-      margin-bottom: 20px;
-      font-weight: 700;
-      letter-spacing: -.02em;
-      background: linear-gradient(135deg, var(--text) 0%, rgba(248,246,241,.8) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .lead{
-      font-size: clamp(16px, 1.8vw, 20px);
-      color: var(--muted);
-      margin-bottom: 32px;
-      line-height: 1.7;
-    }
-
-    .actions{ 
-      display: flex; 
-      gap: 12px; 
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-
-    .work-showcase{
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 16px;
-      background: rgba(6,16,19,.6);
-      border: 1px solid rgba(199,162,74,.25);
-      border-radius: 16px;
-      margin-bottom: 24px;
-      transition: all .3s ease;
-    }
-    
-    .work-showcase:hover{
-      border-color: var(--gold);
-      box-shadow: 0 8px 24px rgba(199,162,74,.15);
-      transform: translateY(-2px);
-    }
-    
-    .work-img{
-      width: 180px;
-      height: 135px;
-      object-fit: cover;
-      border-radius: 12px;
-      flex-shrink: 0;
-      box-shadow: 0 8px 20px rgba(0,0,0,.3);
-    }
-    
-    .work-text{
-      flex: 1;
-    }
-    
-    .work-text strong{
-      display: block;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-    
-    .work-text p{
-      margin: 0;
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .contact-line{
-      padding-top: 24px;
-      border-top: 1px solid rgba(199,162,74,.2);
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .section{ 
-      padding: 24px 0;
-      position: relative;
-    }
-    
-    .grid3{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    h2{
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -.01em;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-    
-    p{ 
-      margin: 0 0 12px; 
-      color: var(--muted);
-    }
-
+    /* Sections / cards */
     .card{
-      background: rgba(11,31,35,.55);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(199,162,74,.2);
+      background: var(--panel);
+      border: 1px solid rgba(199,162,74,.20);
       border-radius: var(--radius);
-      padding: 32px;
       box-shadow: var(--shadow);
-      transition: all .3s ease;
     }
-    
-    .card:hover{
-      border-color: rgba(199,162,74,.4);
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-4px);
+    .pad{padding:22px}
+    .section{margin-top:16px}
+
+    /* Hero */
+    .hero{
+      padding: 24px 0 8px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    h1{
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.15;
+      letter-spacing:-.02em;
+      margin-bottom:12px;
+    }
+    .lead{
+      color:var(--muted);
+      font-size: clamp(14px, 1.5vw, 18px);
+      margin-bottom:14px;
+    }
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+    .chip{
+      font-size:12px;
+      color:rgba(233,242,241,.86);
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(199,162,74,.22);
+      background: rgba(199,162,74,.09);
     }
 
+    .mini{
+      font-size:13px;
+      color:rgba(233,242,241,.72);
+      border-top:1px solid rgba(199,162,74,.18);
+      padding-top:12px;
+      margin-top:14px;
+    }
+
+    /* Right hero image */
+    .hero-media{display:grid;gap:10px}
+    .hero-media img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .hero-media .caption{
+      font-size:12px;
+      color:rgba(233,242,241,.68);
+    }
+
+    /* Services */
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:14px;
+    }
     .item{
-      padding: 24px;
-      border-radius: 16px;
-      background: rgba(6,16,19,.45);
-      border: 1px solid rgba(199,162,74,.2);
-      transition: all .3s ease;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(6,16,19,.35);
     }
-    
-    .item:hover{
-      border-color: var(--gold);
-      background: rgba(6,16,19,.6);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(199,162,74,.15);
-    }
-    
-    .item strong{ 
-      color: var(--text); 
-      display: block; 
-      margin-bottom: 8px;
-      font-size: 16px;
-      font-weight: 600;
-    }
+    .item strong{display:block;margin-bottom:6px;color:var(--text)}
+    .item p{color:var(--muted);font-size:14px}
 
+    /* Projects */
     .projects-grid{
-      display: grid;
+      display:grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap:14px;
+      margin-top:12px;
     }
-    
-    .project-item{
-      background: rgba(6,16,19,.5);
-      border: 1px solid rgba(199,162,74,.2);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: all .3s ease;
+    .project{
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(6,16,19,.35);
     }
-    
-    .project-item:hover{
-      border-color: var(--gold);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(199,162,74,.2);
+    .project img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
     }
-    
-    .project-img{
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-    
-    .project-info{
-      padding: 16px;
-    }
-    
-    .project-info strong{
-      display: block;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-    
-    .project-info p{
-      margin: 0;
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
+    .project .pinfo{padding:14px}
+    .project .pinfo strong{display:block;color:var(--gold);margin-bottom:4px}
+    .project .pinfo span{display:block;color:var(--muted);font-size:13px}
 
+    /* CTA */
     .cta{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 32px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:18px;
       border-radius: var(--radius);
-      border: 2px solid rgba(199,162,74,.4);
-      background: linear-gradient(135deg, rgba(199,162,74,.16), rgba(12,58,59,.14));
-      box-shadow: 0 16px 48px rgba(199,162,74,.2);
-      transition: all .3s ease;
+      border:1px solid rgba(199,162,74,.35);
+      background: linear-gradient(135deg, rgba(199,162,74,.16), rgba(12,58,59,.12));
     }
-    
-    .cta:hover{
-      border-color: var(--gold);
-      box-shadow: 0 20px 60px rgba(199,162,74,.3);
-      transform: translateY(-2px);
-    }
+    .cta h2{font-size:18px;margin-bottom:4px;color:var(--text)}
+    .cta p{color:var(--muted);font-size:14px}
+    .cta .right{display:flex;gap:10px;flex-wrap:wrap}
 
+    /* Footer */
     footer{
-      margin-top: 40px;
-      padding: 32px 0;
-      border-top: 1px solid rgba(199,162,74,.25);
-      color: var(--muted);
-      font-size: 14px;
+      margin-top:18px;
+      padding:18px 0 28px;
+      border-top:1px solid rgba(199,162,74,.22);
+      color:var(--muted);
+      font-size:13px;
     }
-    
     .foot{
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 32px;
-      margin-bottom: 24px;
-    }
-    
-    .hr{ 
-      height: 1px; 
-      background: linear-gradient(90deg, transparent, rgba(199,162,74,.3), transparent);
-      margin: 16px 0; 
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap:14px;
     }
 
+    /* Responsive */
     @media (max-width: 900px){
-      .nav{ 
-        flex-wrap: wrap; 
-        justify-content: center;
-      }
-      
-      .grid3{ 
-        grid-template-columns: 1fr; 
-      }
-      
-      .projects-grid{
-        grid-template-columns: 1fr;
-      }
-      
-      .cta{ 
-        flex-direction: column; 
-        align-items: stretch;
-        text-align: center;
-      }
-      
-      .foot{ 
-        grid-template-columns: 1fr; 
-      }
-      
-      .work-showcase{
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .work-img{
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        aspect-ratio: 4/3;
-      }
-    }
-
-    @media (max-width: 640px){
-      .hero-card{
-        padding: 28px 20px;
-      }
-      
-      .wrap{
-        padding: 20px 16px;
-      }
+      .hero{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr}
+      .brand img{height:54px}
+      .cta{flex-direction:column;align-items:stretch}
+      .foot{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -467,15 +237,30 @@
 <header>
   <div class="nav">
     <div class="brand">
-      <img src="images/logo.jpg.png" style="height:200px;width:auto" />
+      <!-- IMPORTANTE: deixe o arquivo na RAIZ do repositório com este nome -->
+      <img src="logo.jpg.png" alt="Compasso Engenharia e Assessoria">
+      <div class="title">
+        <strong>COMPASSO</strong>
+        <span>Engenharia e Assessoria</span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a class="btn" href="#servicos">Serviços</a>
+      <a class="btn" href="#projetos">Projetos</a>
+      <a class="btn primary" target="_blank" rel="noopener"
+         href="https://wa.me/558894230082?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20com%20a%20Compasso%20Engenharia%20e%20Assessoria.%0A%0A%F0%9F%93%8D%20Local%3A%20%0A%F0%9F%8F%97%EF%B8%8F%20Servi%C3%A7o%20(obra%2Freforma%2Facompanhamento)%3A%20%0A%F0%9F%93%90%20Tamanho%20(m%C2%B2%20ou%20ambientes)%3A%20">
+        💬 WhatsApp
+      </a>
     </div>
   </div>
 </header>
 
 <main class="wrap">
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-card">
+    <div class="card pad">
       <div class="chips">
         <span class="chip">Obras</span>
         <span class="chip">Reformas</span>
@@ -483,149 +268,127 @@
         <span class="chip">Acompanhamento técnico</span>
       </div>
 
-      <h1>Engenharia direta, sem enrolação: planejar, executar e entregar.</h1>
+      <h1>Engenharia direta: planejar, executar e entregar.</h1>
       <p class="lead">
         Construção e assessoria com foco em <strong style="color:var(--text)">organização</strong>,
         <strong style="color:var(--text)">custo</strong> e <strong style="color:var(--text)">prazo</strong>.
         Atendimento por agendamento.
       </p>
 
-      <div class="actions">
-        <a class="btn" target="_blank" rel="noopener"
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn primary" target="_blank" rel="noopener"
            href="https://wa.me/558894230082?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20com%20a%20Compasso%20Engenharia%20e%20Assessoria.%0A%0A%F0%9F%93%8D%20Local%3A%20%0A%F0%9F%8F%97%EF%B8%8F%20Servi%C3%A7o%20(obra%2Freforma%2Facompanhamento)%3A%20%0A%F0%9F%93%90%20Tamanho%20(m%C2%B2%20ou%20ambientes)%3A%20">
-          💬 Falar agora
+          Solicitar orçamento
         </a>
-        <a class="btn ghost" href="#projetos">Ver serviços</a>
-        <a class="btn ghost" href="mailto:compassoengenharia2025@gmail.com">Enviar e-mail</a>
+        <a class="btn" href="mailto:compassoengenharia2025@gmail.com">Enviar e-mail</a>
       </div>
 
-      <div class="work-showcase">
-        <img class="work-img" src="images/projeto1jpg.jpg" alt="Obra em execução" />
-        <div class="work-text">
-          <strong>Acompanhamento técnico</strong>
-          <p>Obra em execução com fiscalização e controle de qualidade</p>
-        </div>
+      <div class="mini">
+        📞 (88) 9 9423-0082 &nbsp;•&nbsp;
+        📧 compassoengenharia2025@gmail.com &nbsp;•&nbsp;
+        📍 Av. Monsenhor José Aloísio Pinto
       </div>
+    </div>
 
-      <div class="contact-line">
-        📞 (88) 9 9423-0082 &nbsp;•&nbsp; 📧 compassoengenharia2025@gmail.com &nbsp;•&nbsp; 📍 Av. Monsenhor José Aloísio Pinto
-      </div>
+    <div class="card pad hero-media">
+      <!-- IMPORTANTE: deixe os arquivos NA RAIZ com estes nomes -->
+      <img src="projeto1.jpg" alt="Obra em execução">
+      <div class="caption">Obra em execução — acompanhamento e controle de qualidade.</div>
     </div>
   </section>
 
+  <!-- SERVIÇOS -->
   <section id="servicos" class="section">
     <div class="grid3">
       <div class="item">
         <strong>Obras e reformas</strong>
-        Execução com organização de etapas e acompanhamento do que foi contratado.
+        <p>Execução organizada por etapas, com acompanhamento do que foi contratado.</p>
       </div>
       <div class="item">
         <strong>Gerenciamento de obra</strong>
-        Controle de cronograma, medição e alinhamento para reduzir retrabalho.
+        <p>Cronograma, medição e alinhamento para reduzir retrabalho e desperdício.</p>
       </div>
       <div class="item">
         <strong>Acompanhamento técnico</strong>
-        Visitas e orientações técnicas para manter a obra no rumo certo.
+        <p>Visitas e orientações para manter a obra no rumo certo e com segurança.</p>
       </div>
     </div>
   </section>
 
+  <!-- PROJETOS -->
   <section id="projetos" class="section">
-    <div class="card">
-      <h2 style="margin-bottom:20px">Nossos Projetos</h2>
-      <p style="margin-bottom:24px">Confira alguns dos trabalhos realizados pela Compasso Engenharia</p>
-      
+    <div class="card pad">
+      <h2 style="color:var(--gold);font-size:18px;margin-bottom:6px">Projetos</h2>
+      <p style="color:var(--muted);font-size:14px">Alguns registros de obras e serviços.</p>
+
       <div class="projects-grid">
-        <div class="project-item">
-          <img src="images/projeto1.jpg.jpg" alt="Acompanhamento de obra" class="project-img" />
-          <div class="project-info">
+        <div class="project">
+          <img src="projeto1.jpg" alt="Projeto 1">
+          <div class="pinfo">
             <strong>Acompanhamento Técnico</strong>
-            <p>Fiscalização e controle de qualidade em obra residencial</p>
+            <span>Fiscalização e controle de qualidade.</span>
           </div>
         </div>
-        
-        <div class="project-item">
-          <img src="images/projeto2.jpg.jpg" alt="Passagem molhada" class="project-img" />
-          <div class="project-info">
-            <strong>Infraestrutura Rural</strong>
-            <p>Execução de passagem molhada com controle técnico</p>
+
+        <div class="project">
+          <img src="projeto2.jpg" alt="Projeto 2">
+          <div class="pinfo">
+            <strong>Infraestrutura</strong>
+            <span>Execução com controle técnico.</span>
           </div>
         </div>
-        
-        <div class="project-item">
-          <img src="images/projeto3.jpg.jpg" alt="Estrutura em concreto" class="project-img" />
-          <div class="project-info">
-            <strong>Estrutura em Concreto</strong>
-            <p>Execução e acompanhamento de estrutura em concreto armado</p>
+
+        <div class="project">
+          <img src="projeto3.jpg" alt="Projeto 3">
+          <div class="pinfo">
+            <strong>Estrutura</strong>
+            <span>Concreto armado e etapas de execução.</span>
           </div>
         </div>
-        
-        <div class="project-item">
-          <img src="images/projeto4.jpg.jpg" alt="Estrutura com pilares" class="project-img" />
-          <div class="project-info">
-            <strong>Execução de Estrutura</strong>
-            <p>Concretagem de pilares e fundações com acompanhamento técnico</p>
+
+        <div class="project">
+          <img src="projeto4.jpg" alt="Projeto 4">
+          <div class="pinfo">
+            <strong>Fundação e Pilares</strong>
+            <span>Acompanhamento e conformidade.</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="card">
-      <h2>Como funciona</h2>
-      <div class="grid3" style="margin-top:20px">
-        <div class="item">
-          <strong>1) Você chama no WhatsApp</strong>
-          Informa local, tipo de serviço e tamanho do projeto.
-        </div>
-        <div class="item">
-          <strong>2) Orçamento e plano</strong>
-          Escopo definido, etapas claras e alinhamento do que será feito.
-        </div>
-        <div class="item">
-          <strong>3) Execução / acompanhamento</strong>
-          Serviço rodando com comunicação objetiva e controle de progresso.
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- CTA -->
   <section class="section">
     <div class="cta">
       <div>
-        <h2 style="margin-bottom:8px">Quer orçamento hoje?</h2>
-        <p style="margin:0">
-          Envie <strong style="color:var(--text)">local</strong>, <strong style="color:var(--text)">tipo de serviço</strong> e <strong style="color:var(--text)">tamanho</strong>. Eu retorno com os próximos passos.
-        </p>
+        <h2>Quer orçamento hoje?</h2>
+        <p>Envie local, tipo de serviço e tamanho do projeto. Eu retorno com os próximos passos.</p>
       </div>
-      <a class="btn" target="_blank" rel="noopener"
-         href="https://wa.me/558894230082?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20com%20a%20Compasso%20Engenharia%20e%20Assessoria.%0A%0A%F0%9F%93%8D%20Local%3A%20%0A%F0%9F%8F%97%EF%B8%8F%20Servi%C3%A7o%3A%20%0A%F0%9F%93%90%20Tamanho%3A%20%0A">
-        💬 Solicitar atendimento
-      </a>
+      <div class="right">
+        <a class="btn primary" target="_blank" rel="noopener"
+           href="https://wa.me/558894230082?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20com%20a%20Compasso%20Engenharia%20e%20Assessoria.%0A%0A%F0%9F%93%8D%20Local%3A%20%0A%F0%9F%8F%97%EF%B8%8F%20Servi%C3%A7o%3A%20%0A%F0%9F%93%90%20Tamanho%3A%20">
+          💬 WhatsApp
+        </a>
+        <a class="btn" href="mailto:compassoengenharia2025@gmail.com">✉️ E-mail</a>
+      </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="foot">
       <div>
-        <strong style="color:var(--text); font-size:16px">Compasso Engenharia Ltda</strong><br/>
-        CNPJ: <strong style="color:var(--text)">61.348.853/0001-03</strong><br/>
-        <span style="font-size:13px">Engenharia civil • Construção • Reforma • Gerenciamento</span>
-        <div class="hr"></div>
-        <span style="font-size:13px">📍 Av. Monsenhor José Aloísio Pinto</span>
+        <strong style="color:var(--text)">Compasso Engenharia Ltda</strong><br>
+        CNPJ: <strong style="color:var(--text)">61.348.853/0001-03</strong><br>
+        Engenharia civil • Construção • Reforma • Gerenciamento
       </div>
       <div>
-        <strong style="color:var(--text); font-size:16px">Contato</strong>
-        <div class="hr"></div>
-        <div style="font-size:13px">
-          📞 (88) 9 9423-0082<br/>
-          📧 compassoengenharia2025@gmail.com
-        </div>
+        📍 Av. Monsenhor José Aloísio Pinto<br>
+        📞 (88) 9 9423-0082<br>
+        📧 compassoengenharia2025@gmail.com
       </div>
     </div>
-    <div class="hr"></div>
-    <div style="text-align:center; font-size:13px">
+    <div style="margin-top:12px;text-align:center">
       © <span id="year"></span> Compasso Engenharia Ltda • Todos os direitos reservados
     </div>
   </footer>
@@ -634,20 +397,6 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
-  
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
-  });
 </script>
 </body>
 </html>
